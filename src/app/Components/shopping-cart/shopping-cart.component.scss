@@ -1,0 +1,255 @@
+.border{
+    border: 2px  solid lightgray;
+}
+.border-bottom{
+    border-bottom: 2px solid lightgray;
+}
+.cart{
+    border: 2px  solid lightgray;
+    border-top: 0;
+    border-bottom: 0;
+    .cart-items{
+        min-height: 90vh;
+        .products{
+            flex: 2;
+            h3{
+                font-size: 1.9rem;
+                padding-bottom: 0.5rem;
+            }
+            .items{
+                .item{
+                    align-items: center;
+                    justify-content: space-between;
+                    .img{
+                        width: 120px;
+                        height: 90px;
+                        padding: 2px;
+                        margin-right: 1rem;
+                        border: 2px solid #606060;
+                        img{
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    .product-name{
+                        p:first-child{
+                            margin-bottom: 0.4rem;
+                            font-size: 1.2rem;
+                        }
+                        P:last-child{
+                            margin-top:0.4rem;
+                            font-size: 1.2rem;
+                        }
+                    }
+                    .manage{
+                        .quantity-wrapper{
+                            width: 100px;
+                            display: flex;
+                            input{
+                                width: 40%;
+                                padding: 0.5rem;
+                                border: 1px solid #606066;
+                                border-left: 0;
+                                border-right: 0;
+                                text-align: center;
+                            }
+
+                            button{
+                                background: #eeeeee;
+                                border: 1px solid #606060;
+                                padding: 0.5rem;
+                                width: 30%;  
+                                cursor: pointer; 
+                            }   
+                        }
+
+                        &>button{
+                             border: none;
+                             background:none;
+                             cursor: pointer;
+                             margin-left: 2rem;
+                             font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+            &>.flex{
+                &>button{
+                    width: 150px;
+                    font-size: 1.2rem;
+                    margin-right: 2rem;
+                }
+            }
+
+        }
+        .summary{
+            flex: 1;
+            padding-left: 2rem;
+            h3{
+                font-size: 1.9rem;
+                padding-bottom: 0.5rem;
+            }
+            .coupon{
+                input{
+                    border: none;
+                    padding: 0.5rem;
+                    font-size: 1.2rem;
+                    &::placeholder{
+                        font-size: 1.2rem;
+                    }
+                }
+                .apply{
+                    border: none;
+                    background: transparent;
+                    font-size: 1.1rem;
+                    padding: 0.5rem;
+                    margin-left: 1rem;
+                    cursor: pointer;
+                }       
+            }
+            .cost{
+                .flex{
+                    justify-content: space-between;  
+                }
+                .couponText{
+                    padding-top: 1rem;  
+                } 
+            }
+            &>.flex{
+                justify-content: space-between;
+                &:last-child{
+                    p{
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+#couponsnackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+
+    &.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    &.red{
+        &:before{
+            font-family: FontAwesome;
+            content: '\f071';
+            margin-right: 1rem;
+        }
+        background: rgba(245, 36, 36, 0.6);
+        color: white;
+        font-weight: 900;
+        border: 2px solid red;
+    }
+
+    &.green{
+        &:before{
+            font-family: FontAwesome;
+            content: '\f00c';
+            margin-right: 1rem;
+        }
+        background: rgba(61, 255, 43, 0.6);
+        color: white;
+        font-weight: 900;
+        border: 2px solid green;
+    }
+}
+
+
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+
+@media(max-width:575){
+      .cart{
+        .cart-items{
+            flex-direction: column-reverse;
+            .products{
+                flex: 100%;
+            }
+            .summary{
+                flex: 100%;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+@media(max-width:767px){
+    .cart{
+        .cart-items{
+            flex-direction: column-reverse;
+            .products{
+                flex: 100%;
+                .items{
+                    .item{
+                        flex-direction: column;
+
+                        .product-detail{
+                            margin-bottom: 1rem;
+                            flex-direction: column;
+
+                            .img{
+                              margin-bottom: 1rem;
+                              width: 100%;
+                              height: 230px;
+                            }
+                        }
+
+                        .manage{
+                            .quantity-wrapper{
+                                width: 150px;
+                            }
+                        }
+                    }
+                }
+            }
+            .summary{
+                flex: 100%;
+                padding-left: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    }
+}
+
+
+
+

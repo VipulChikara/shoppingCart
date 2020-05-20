@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="bg-white border">
+        <app-header></app-header>
+    </div>
+    <div class="cart container-fluid fade">
+        <app-shopping-header></app-shopping-header>
+        <div class="cart-items py-3 container flex bg-white">
+            <div class="products">
+                <h3 class="border-bottom">Shopping Cart</h3>
+
+                <div class="items border-bottom" *ngIf="cart && cart.length; else noItem">
+                    <div class="item flex my-1 translateX" *ngFor="let item of cart">
+                        <div class="product-detail flex">
+                            <div class="img">
+                                <img src="{{item.imageUrl}}" alt="">
+                            </div>
+                            <div class="product-name">
+                                <p>{{item.title | titlecase}}</p>
+                                <p>Size - {{item.model | uppercase}}</p>
+                                <p>{{getPrices(item.price,item.quantity) | currency}}</p>
+                            </div>
+                        </div>
+                        <div class="manage flex">
+                            <div class="quantity-wrapper">
+                                <button (click)="removeFromCart(item)">-</button>
+                                <input type="text" readonly value="{{item.quantity}}">
+                                <button (click)="addToCart(item)">+</button>
+                            </div>
+                            <button (click)="deleteFromCart(item)"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #noItem>
+                    <div class="text-center border-bottom">
+                        <p class="my-4">There is no item in your cart</p>
+                    </div>
+                </ng-template>
+
+                <div class="flex py-2">
+                    <button class="btn btn-dark" routerLink="/shippingDetail"
+                        [disabled]="!getTotalQuantity()">Next</button>
+                    <button class="btn btn-light" routerLink="/">Cancel</button>
+                </div>
+            </div>
+            <div class="summary">
+
+                <h3 class="border-bottom">Summary</h3>
+
+                <div class="coupon border-bottom py-1">
+                    <input type="text" placeholder="Enter Coupon Here" (keyup.enter)="applyCoupon()"
+                        [(ngModel)]="coupon">
+                    <button *ngIf="coupon" class="apply" (click)="applyCoupon()">Apply</button>
+                </div>
+
+                <div class="cost border-bottom py-1">
+                    <div class="flex ">
+                        <p>SUBTOTAL</p>
+                        <p>{{ subtotal() | currency }}</p>
+                    </div>
+                    <div *ngIf="couponValue" class="flex couponText">
+                        <p>COUPON</p>
+                        <p>-{{ couponValue | currency }}</p>
+                    </div>
+                    <div class="flex py-1">
+                        <p>SHIPPING</p>
+                        <p>${{ shipping }}.00</p>
+                    </div>
+                    <div class="flex">
+                        <p>TAX</p>
+                        <p>{{ tax() | currency }}</p>
+                    </div>
+                </div>
+
+                <div class="total py-1 flex">
+                    <p>TOTAL</p>
+                    <p>{{ total() | currency }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<!-- snackbar -->
+<div id="couponsnackbar" [ngClass]="couponClass">{{message}}</div>

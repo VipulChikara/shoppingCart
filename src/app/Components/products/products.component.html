@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div id="home-header" class="bg-light border">
+        <app-header></app-header>
+        <div class="container fade">
+            <div class="content flex">
+                <p class="typingText">Where something special happens every day.</p>
+                <div class="flex translateXRight">
+                    <input type="text" placeholder="&#xF002; &nbsp;&nbsp; Search ..." (keyup.enter)="filter(scrollUpto)"
+                        [(ngModel)]="query">
+                    <button class="btn btn-dark" (click)="filter(scrollUpto)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="products" class="bg-white border fade">
+        <div class="container py-3">
+            <div class="header text-center my-2 translateY">
+                <h3>Product Listing</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum sapiente tenetur ad
+                    praesentium
+                    possimus
+                    non
+                    velit maiores enim voluptatum repellendus!</p>
+            </div>
+            <div #scrollUpto class="py-2">
+                <div *ngIf="products.length; else noProduct" class="products flex">
+                    <div *ngFor="let item of products;let i=index;" class="product flex fade">
+                        <div class="img">
+                            <img src="{{item.imageUrl}}" alt="product">
+                            <button *ngIf="!quantity(item); else manage" class="btn btn-dark addToCart"
+                                (click)="addToCart(item)">Add To Cart</button>
+
+                            <ng-template #manage>
+                                <div class="quantity-wrapper">
+                                    <button (click)="removeFromCart(item)">-</button>
+                                    <input type="text" value="{{quantity(item)}}" readonly>
+                                    <button (click)="addToCart(item)">+</button>
+                                </div>
+                            </ng-template>
+
+                        </div>
+                        <div class="content" routerLink="/product/{{item.$key}}">
+                            <p>{{item.title | titlecase}}</p>
+                            <div class="rating my-1">
+                                <i class="fa" *ngFor="let class of rating(item.rating)" [ngClass]="class"></i>
+                            </div>
+                            <p>{{item.price | currency}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <ng-template #noProduct>
+                    <div class="py-2 text-center">
+                        <p>No Product Available</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>
+</div>

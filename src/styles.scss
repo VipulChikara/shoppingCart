@@ -1,1 +1,193 @@
 /* You can add global styles to this file, and also import other style files */
+$dark-color:#606060;
+$medium-color:#eeeeee;
+$light-color:#f8f8f8;
+$white-color:#ffffff;
+
+*{
+    margin: 0;
+    padding: 0;  
+    box-sizing: border-box;  
+}
+
+body{
+    background: $medium-color;
+    padding: 0.4rem 0.7rem;
+    font-family: 'Roboto',sans-serif;
+    color: $dark-color;
+}
+
+ul{
+    list-style: none;
+}
+
+.container{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.container-fluid{
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 1380px;
+}
+
+.flex{
+    display: flex;
+}
+
+.text{
+    &-center{
+        text-align: center;
+    }
+}
+
+
+.my{
+    &-1{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    &-2{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    &-3{
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    &-4{
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+}
+
+.py{
+    &-1{
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    &-2{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    &-3{
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    &-4{
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+.btn{
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &-dark{
+        background: $dark-color;
+        color: $white-color;
+        border: 1px solid $dark-color;
+    }
+    &-light{
+        background-color: $light-color;
+        border: 1px solid $light-color;
+
+    }
+}
+
+
+.bg{
+    &-dark{
+        background: $dark-color;
+    }
+    &-medium{
+        background: $medium-color;
+    }
+    &-light{
+        background: $light-color;
+    }
+    &-white{
+        background: $white-color;
+    }
+}
+
+@media (max-width:575px){
+    .container{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    }
+}
+
+
+.fade{
+    animation: fade 0.5s ease-in-out forwards;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.typingText{
+    animation: type 4s steps(60, end);
+}
+
+@keyframes type{
+    from{
+        width: 0;
+    }
+}
+
+.translateY{
+    animation: translateY 1s ease-in-out forwards;
+}
+
+@keyframes translateY{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: none;
+    }
+}
+
+.translateX{
+    animation: translateX 1s ease-in-out forwards;
+}
+
+@keyframes translateX{
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: none;
+    }
+}
+
+.translateXRight{
+    animation: translateXRight 1s ease-in-out forwards;
+}
+
+@keyframes translateXRight{
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: none;
+    }
+}
+

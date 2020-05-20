@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="bg-white border">
+        <app-header></app-header>
+    </div>
+    <div class="product bg-white flex fade">
+        <div id="slider" class="card border-x images">
+            <figure>
+                <img *ngFor="let item of product.imageUrls" src="{{item}}" alt>
+            </figure>
+        </div>
+        <div class="card border-r bg-white product-details translateXRight">
+            <h3>{{product.title}}</h3>
+            <div class="flex name py-1 border-bottom">
+                <div class="rating">
+                    <i class="fa" *ngFor="let class of rating(product.rating)" [ngClass]="class"></i>
+                </div>
+                <p>{{product.reviews.length}} Reviews</p>
+            </div>
+
+            <div class="flex price py-2 border-bottom">
+                <p>{{product.price | currency}}</p>
+                <div class="select-wrapper">
+                    <select name="Model" (change)="changeModel()" [(ngModel)]="product.model">
+                        <option value="" disabled selected>Select Model</option>
+                        <option *ngFor="let item of product.models" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="description py-1">
+                <p>{{product.description}}</p>
+            </div>
+
+            <button *ngIf="!quantity(); else manage" class="btn btn-dark my-1" (click)="addToCart()">Add To
+                Cart</button>
+
+            <ng-template #manage>
+                <div class="quantity-wrapper my-1">
+                    <button (click)="removeFromCart()">-</button>
+                    <input type="text" value="{{quantity()}}" readonly>
+                    <button (click)="addToCart()">+</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div class="reviews bg-white fade">
+        <div class="container">
+            <h3 class="my-3 translateY">Reviews</h3>
+            <div class="cards my-3">
+                <div class="card " *ngFor="let item of product.reviews">
+                    <div class="flex translateX">
+                        <div class="reviewer flex">
+                            <div class="user">
+                                <h3>{{item.name}}</h3>
+                                <p class="my-1">{{item.timestamp | date}}</p>
+                                <div class="rating">
+                                    <i class="fa" *ngFor="let class of rating(item.rating)" [ngClass]="class"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <p>{{item.comment}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

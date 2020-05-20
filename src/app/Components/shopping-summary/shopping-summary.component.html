@@ -1,0 +1,59 @@
+<div class="summary">
+
+    <h3 class="border-bottom">Summary</h3>
+    <div *ngIf="cartItems.length; else noItem" class="products border-bottom">
+        <div class="product py-1 flex translateXRight" *ngFor="let item of cartItems">
+            <div class="img">
+                <img src="{{item.imageUrl}}" alt="">
+            </div>
+            <div class="detail">
+                <p>{{item.title }} X {{item.quantity}}</p>
+                <p class="py-1">{{item.model}}</p>
+                <p>{{ getPrice(item.price , item.quantity) | currency}}</p>
+            </div>
+        </div>
+    </div>
+    <ng-template #noItem>
+        <div class="border-bottom text-center py-3">
+            <p>There is no item in your cart</p>
+        </div>
+    </ng-template>
+    <div class="coupon border-bottom py-1">
+        <div class="voucher" (click)="show=!show">HAVE A VOUCHER ? </div>
+        <input *ngIf="show || voucher" type="text" placeholder="Enter Your Voucher" (keyup.enter)="applyVoucher()"
+            [(ngModel)]="voucher">
+    </div>
+
+    <div class="cost border-bottom py-1">
+        <div class="flex ">
+            <p>SUBTOTAL</p>
+            <p>{{getSubtotal() | currency}}</p>
+        </div>
+        <div *ngIf="couponValue" class="flex couponText">
+            <p>COUPON</p>
+            <p>-{{ couponValue | currency }}</p>
+        </div>
+        <div *ngIf="voucherValue" class="flex couponText">
+            <p>VOUCHER</p>
+            <p>-{{ voucherValue | currency }}</p>
+        </div>
+        <div class="flex py-1">
+            <p>SHIPPING</p>
+            <p>${{shipping}}.00</p>
+        </div>
+
+        <div class="flex">
+            <p>TAX</p>
+            <p>{{getTax() | currency}}</p>
+        </div>
+    </div>
+
+    <div class="total py-1 flex">
+        <p>TOTAL</p>
+        <p>{{getTotal() | currency}}</p>
+    </div>
+
+</div>
+
+<!-- snackbar -->
+<div id="snackbar" [ngClass]="voucherClass">{{message}}</div>

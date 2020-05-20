@@ -1,0 +1,107 @@
+<div class="container-fluid">
+    <div class="bg-white border">
+        <app-header></app-header>
+    </div>
+    <div class="shipping container-fluid fade">
+        <app-shopping-header></app-shopping-header>
+        <div class="shipping-items py-3 container flex bg-white">
+            <div class="products">
+                <h3 class="border-bottom">Shipping Details</h3>
+                <form (ngSubmit)="submit(form)" #form="ngForm">
+                    <div class="form border-bottom py-2">
+                        <div class="flex form-group">
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':firstName.touched && firstName.errors?.required,'green':!firstName.errors}"
+                                    #firstName="ngModel" placeholder="First Name" name="firstName"
+                                    [(ngModel)]="shippingDetails.firstName" required>
+
+                            </div>
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':lastName.touched && lastName.errors?.required,'green':!lastName.errors}"
+                                    #lastName="ngModel" placeholder="Last Name" name="lastName"
+                                    [(ngModel)]="shippingDetails.lastName" required>
+                            </div>
+                        </div>
+                        <div class="flex py-2">
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':address.touched && address.errors?.required,'green':!address.errors}"
+                                    #address="ngModel" placeholder="Address" name="address"
+                                    [(ngModel)]="shippingDetails.address" required>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="form-control">
+                                <input type="text" placeholder="Address 2" name="address2"
+                                    [(ngModel)]="shippingDetails.address2">
+                            </div>
+                        </div>
+                        <div class="flex py-2 form-group">
+                            <div id="country" class="form-control">
+                                <select name="country"
+                                    [ngClass]="{'red':country.touched && country.errors?.required,'green':!country.errors}"
+                                    #country="ngModel" [(ngModel)]="shippingDetails.country" required id="">
+                                    <option value="" selected disabled>Country</option>
+                                    <option value="India">India</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="America">America</option>
+
+                                </select>
+                            </div>
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':city.touched && city.errors?.required,'green':!city.errors}"
+                                    #city="ngModel" placeholder="City" name="city" [(ngModel)]="shippingDetails.city"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="flex form-group">
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':zip.touched && zip.errors?.required,'green':!zip.errors}"
+                                    #zip="ngModel" placeholder="Zip/Postal Code" name="zip"
+                                    [(ngModel)]="shippingDetails.zip" required>
+                            </div>
+                            <div class="form-control">
+                                <input type="text"
+                                    [ngClass]="{'red':phone.touched && phone.errors?.required,'green':!phone.errors}"
+                                    #phone="ngModel" placeholder="Phone" name="phone"
+                                    [(ngModel)]="shippingDetails.phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shipping-type form-group flex py-2 border-bottom">
+                        <div class="form-control" [ngClass]="{'active':shippingDetails.shipping==='0'}">
+                            <input type="radio" name="shipping" (change)="changeShipping()"
+                                [(ngModel)]="shippingDetails.shipping" aria-checked="true" value="0">
+                            <div class="content">
+
+                                <p>Free Shipping - $ 0</p>
+                                <p>Between 2 - 5 working days</p>
+                            </div>
+                        </div>
+                        <div class="form-control" [ngClass]="{'active':shippingDetails.shipping==='20'}">
+                            <input type="radio" name="shipping" (change)="changeShipping()"
+                                [(ngModel)]="shippingDetails.shipping" value="20">
+                            <div class="content">
+                                <p>Next Day Delivery - $ 20</p>
+                                <p>24 hours from checkout</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex py-2">
+                        <button class="btn btn-dark" routerLink="/payment" [disabled]="!form.valid"
+                            type="submit">Next</button>
+                        <button class="btn btn-light" routerLink="/" type="button">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <app-shopping-summary></app-shopping-summary>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

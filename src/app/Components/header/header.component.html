@@ -1,0 +1,16 @@
+<header id="header">
+    <div class="container flex translateY">
+        <h2 class="brand" routerLink="/">E-Commerce</h2>
+        <ul #sidenav class="flex">
+            <a (click)="closeSideNav()" class="close"><i class="fa fa-close "></i></a>
+            <li routerLink="/" class="line">Home</li>
+            <li routerLink="/shippingDetail" class="line">About</li>
+            <li routerLink="/payment" class="line">Shop</li>
+            <li routerLink="/">Help</li>
+            <li routerLink="/cart" class="btn btn-dark">
+                Your Cart
+            </li>
+        </ul>
+        <a (click)="openSideNav()" class="bars"><i class="fa fa-bars"></i></a>
+    </div>
+</header>
