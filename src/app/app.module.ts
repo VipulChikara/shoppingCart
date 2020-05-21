@@ -10,7 +10,7 @@ import { ShoppingCartComponent } from './Components/shopping-cart/shopping-cart.
 import { ShoppingDetailsComponent } from './Components/shopping-details/shopping-details.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { OrderSuccessfullComponent } from './Components/order-successfull/order-successfull.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { ShoppingHeaderComponent } from './Components/shopping-header/shopping-header.component';
 import { ShoppingSummaryComponent } from './Components/shopping-summary/shopping-summary.component';
@@ -32,7 +32,8 @@ import { ShoppingSummaryComponent } from './Components/shopping-summary/shopping
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

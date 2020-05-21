@@ -38,9 +38,9 @@
                 </ng-template>
 
                 <div class="flex py-2">
-                    <button class="btn btn-dark" routerLink="/shippingDetail"
+                    <button class="btn btn-dark" routerLink="/shippingDetail" type="submit"
                         [disabled]="!getTotalQuantity()">Next</button>
-                    <button class="btn btn-light" routerLink="/">Cancel</button>
+                    <button class="btn btn-light" type="button" routerLink="/">Cancel</button>
                 </div>
             </div>
             <div class="summary">
@@ -50,7 +50,7 @@
                 <div class="coupon border-bottom py-1">
                     <input type="text" placeholder="Enter Coupon Here" (keyup.enter)="applyCoupon()"
                         [(ngModel)]="coupon">
-                    <button *ngIf="coupon" class="apply" (click)="applyCoupon()">Apply</button>
+                    <button *ngIf="coupon" class="apply" type="button" (click)="applyCoupon()">Apply</button>
                 </div>
 
                 <div class="cost border-bottom py-1">

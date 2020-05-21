@@ -33,28 +33,26 @@ export class ShoppingSummaryComponent implements OnInit {
       return this.cartService.voucherValue
     }).switchMap(res => {
       this.voucherValue = res
-      console.log(res)
       return this.cartService.couponValue
     }).subscribe(res => {
-      console.log(res);
       this.couponValue = res;
     })
   }
 
   applyVoucher() {
-    this.cartService.voucherValue.next(0);
+    this.cartService.voucherValue.next(0)
     this.cartService.voucher.next(this.voucher)
+
     if (this.getTotal())
       if (this.voucher === 'SHOP$200') {
-        this.message = "Coupon Applied";
+        this.message = "Voucher Applied";
         this.voucherClass = 'green'
         this.cartService.voucherValue.next(200);
       }
       else {
-        this.message = "Invalid Coupon";
+        this.message = "Invalid Voucher";
         this.voucherClass = 'red'
       }
-
 
     var x = document.getElementById("snackbar");
     x.className = "show";
@@ -63,13 +61,11 @@ export class ShoppingSummaryComponent implements OnInit {
 
   getTotal() {
     if (this.shipping) {
-      console.log(this.shipping)
       return this.cartService.getTotalPrice() + parseInt(this.shipping) - this.couponValue - this.voucherValue
     }
   }
 
   getPrice(price, quantity) {
-    console.log(price, quantity)
     return price * quantity;
   }
 

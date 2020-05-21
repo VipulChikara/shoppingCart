@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-header',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingHeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input() shippingForm: boolean = false;
+  path
+
+  constructor(private router: Router, private route: ActivatedRoute,
+    private cartService: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.route.url.subscribe(res => {
+      this.path = res[0]['path'];
+    });
   }
+
+  shippingDetail() {
+    if (this.cartService.getTotalQuantiy())
+      this.router.navigate(['/shippingDetail'])
+  }
+
+  payment() {
+    if (this.cartService.getTotalQuantiy() && this.shippingForm)
+      this.router.navigate(['/payment'])
+  }
+
+
 
 }

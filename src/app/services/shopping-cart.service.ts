@@ -80,8 +80,13 @@ export class ShoppingCartService {
           this.deleteFromCart(product)
 
         else {
-          this.cartItems[index].quantity += quantity
-          this.cartItems[index].model = product.model
+          if (this.cartItems[index].quantity < 20) {
+            this.cartItems[index].quantity += quantity
+            this.cartItems[index].model = product.model
+          }
+          else {
+            alert(`${this.cartItems[index].title} has already 20 quantity`)
+          }
         }
       }
       else

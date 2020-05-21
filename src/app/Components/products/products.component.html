@@ -3,8 +3,8 @@
         <app-header></app-header>
         <div class="container fade">
             <div class="content flex">
-                <p class="typingText">Where something special happens every day.</p>
-                <div class="flex translateXRight">
+                <p class="translateX">Where something special happens every day.</p>
+                <div class=" flex translateXRight">
                     <input type="text" placeholder="&#xF002; &nbsp;&nbsp; Search ..." (keyup.enter)="filter(scrollUpto)"
                         [(ngModel)]="query">
                     <button class="btn btn-dark" (click)="filter(scrollUpto)">Submit</button>

@@ -7,11 +7,11 @@
         <div class="payment-items py-3 container flex bg-white">
             <div class="payment-option">
                 <h3 class="border-bottom">Payment Method</h3>
-                <form (ngSubmit)="submit(form)" #form="ngForm">
+                <form (ngSubmit)="submit(f)" #f="ngForm">
                     <div class="payment-type flex py-2 border-bottom">
                         <div class="form-control translateX">
                             <div class="type flex">
-                                <input type="radio" name="payment" ngModel value="credit_card" required>
+                                <input type="radio" name="payment" [(ngModel)]="payment" value="credit_card" required>
                                 <div class="content">
                                     <p>Credit Card</p>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, consequatur.
@@ -22,20 +22,22 @@
                                 <div class="flex py-2">
                                     <input type="number" name="card_number"
                                         placeholder="0000 &nbsp; 0000 &nbsp; 0000 &nbsp; 0000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#xf09d;"
-                                        ngModel>
-                                    <input type="number" name="expiry" placeholder="MM / YY" ngModel>
+                                        ngModel [required]="payment==='credit_card'">
+                                    <input type="number" name="expiry" placeholder="MM / YY" ngModel
+                                        [required]="payment==='credit_card'">
                                     <input type="number" name="cvv"
                                         placeholder="CVV &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#xf05a;"
-                                        ngModel>
+                                        ngModel [required]="payment==='credit_card'">
                                 </div>
-                                <input type="text" name="name" placeholder="Card Holder Name" ngModel>
+                                <input type="text" name="name" placeholder="Card Holder Name" ngModel
+                                    [required]="payment==='credit_card'">
                             </div>
                         </div>
                     </div>
 
                     <div class="payment-type py-2 border-bottom">
                         <div class="form-control translateX flex">
-                            <input type="radio" name="payment" ngModel value="paypal" required>
+                            <input type="radio" name="payment" [(ngModel)]="payment" value="paypal" required>
                             <div class="content">
                                 <p>PayPal</p>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorem saepe
@@ -46,9 +48,9 @@
                     </div>
 
                     <div class="flex py-2">
-                        <button class="btn btn-dark" type="submit" [disabled]="!form.valid"
-                            routerLink="/orderSucessfull">Pay Now</button>
-                        <button class="btn btn-light" type="submit" routerLink="/">Cancel</button>
+                        <button class="btn btn-dark" type="submit" [disabled]="!f.valid  || !totalQuantity">Pay
+                            Now</button>
+                        <button class="btn btn-light" type="button" routerLink="/">Cancel</button>
                     </div>
                 </form>
             </div>

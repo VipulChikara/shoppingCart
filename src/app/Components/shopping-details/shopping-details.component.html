@@ -3,7 +3,7 @@
         <app-header></app-header>
     </div>
     <div class="shipping container-fluid fade">
-        <app-shopping-header></app-shopping-header>
+        <app-shopping-header [shippingForm]="form.valid"></app-shopping-header>
         <div class="shipping-items py-3 container flex bg-white">
             <div class="products">
                 <h3 class="border-bottom">Shipping Details</h3>
@@ -94,8 +94,7 @@
                     </div>
 
                     <div class="flex py-2">
-                        <button class="btn btn-dark" routerLink="/payment" [disabled]="!form.valid"
-                            type="submit">Next</button>
+                        <button class="btn btn-dark" [disabled]="!form.valid" type="submit">Next</button>
                         <button class="btn btn-light" routerLink="/" type="button">Cancel</button>
                     </div>
                 </form>

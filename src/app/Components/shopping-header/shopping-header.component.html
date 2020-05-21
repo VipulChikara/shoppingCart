@@ -1,7 +1,7 @@
 <div class="container bg-light">
     <ul class="flex py-4">
         <li routerLink="/cart" routerLinkActive="active">1. Shopping Cart</li>
-        <li routerLink="/shippingDetail" routerLinkActive="active">2. Shipping Detail</li>
-        <li routerLink="/payment" routerLinkActive="active">3. Payment Options</li>
+        <li (click)="shippingDetail()" [ngClass]="{'active':path==='shippingDetail'}">2. Shipping Detail</li>
+        <li (click)="payment()" [ngClass]="{'active':path==='payment'}">3. Payment Options</li>
     </ul>
 </div>

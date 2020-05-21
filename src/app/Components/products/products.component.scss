@@ -12,9 +12,6 @@
     &> p {
         font-size: 3.5rem;
         text-align: center;
-        width: 30em;
-        white-space: nowrap;
-        overflow: hidden;
         &:after{
             content: '';
             display: block;
