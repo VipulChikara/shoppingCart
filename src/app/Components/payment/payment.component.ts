@@ -42,8 +42,8 @@ export class PaymentComponent implements OnInit {
       order: this.cartItems,
       totalPrice: this.cartService.getTotalPrice() - this.couponValue - this.voucherValue
     }
-    console.log(order);
-    this.router.navigate(['/orderSuccessful'])
+    this.cartService.clearCart();
+    this.router.navigate(['/orderSuccessful']);
   }
 
 }

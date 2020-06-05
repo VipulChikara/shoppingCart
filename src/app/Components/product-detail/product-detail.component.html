@@ -52,7 +52,7 @@
                         <div class="reviewer flex">
                             <div class="user">
                                 <h3>{{item.name}}</h3>
-                                <p class="my-1">{{item.timestamp | date}}</p>
+                                <p class="my-1">{{item.timestamp | date:'yyyy'}}</p>
                                 <div class="rating">
                                     <i class="fa" *ngFor="let class of rating(item.rating)" [ngClass]="class"></i>
                                 </div>

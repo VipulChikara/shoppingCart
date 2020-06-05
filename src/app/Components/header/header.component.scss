@@ -40,8 +40,10 @@
 @media(max-width:575px){
 .container{
     .bars{
-        display: block;
         font-size: 1rem;
+    }
+    .brand{
+        font-size: 1.5rem;
     }
     }
 }
@@ -51,7 +53,7 @@
 .container{
     .bars{
         display: block;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     ul{
         padding: 0;

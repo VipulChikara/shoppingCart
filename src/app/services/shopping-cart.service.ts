@@ -49,7 +49,7 @@ export class ShoppingCartService {
   }
 
   clearCart() {
-    this.cartItems = []
+    this.cart.next([])
   }
 
   getCartItems() {
@@ -73,9 +73,8 @@ export class ShoppingCartService {
 
   updateCart(product, quantity) {
     if (this.cartItems.length) {
-      let index = this.cartItems.findIndex((item) => { return item.$key === product.$key && item.model === product.model })
+      let index = this.cartItems.findIndex((item) => item.$key === product.$key && item.model === product.model)
       if (index >= 0) {
-        // delete
         if (this.cartItems[index].quantity == 1 && quantity <= -1)
           this.deleteFromCart(product)
 
